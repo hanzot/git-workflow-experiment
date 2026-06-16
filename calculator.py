@@ -1,4 +1,4 @@
-"""Simple calculator module with basic arithmetic operations."""
+"""Calculator module with arithmetic and power operations."""
 
 
 def add(a: float, b: float) -> float:
@@ -25,3 +25,14 @@ def divide(a: float, b: float) -> float:
     if b == 0:
         raise ZeroDivisionError("Cannot divide by zero")
     return a / b
+
+
+def power(a: float, b: float) -> float:
+    """Return a raised to the power of b.
+
+    Raises:
+        ValueError: If both a and b are zero (0**0 is undefined).
+    """
+    if a == 0 and b == 0:
+        raise ValueError("0**0 is undefined")
+    return a ** b

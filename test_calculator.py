@@ -2,7 +2,7 @@
 
 import pytest
 
-from calculator import add, subtract, multiply, divide
+from calculator import add, subtract, multiply, divide, power
 
 
 class TestAdd:
@@ -57,3 +57,27 @@ class TestDivide:
     def test_divide_by_zero(self):
         with pytest.raises(ZeroDivisionError, match="Cannot divide by zero"):
             divide(1, 0)
+
+
+class TestPower:
+    def test_positive_exponent(self):
+        assert power(2, 3) == 8
+
+    def test_zero_exponent(self):
+        assert power(5, 0) == 1
+
+    def test_one_exponent(self):
+        assert power(7, 1) == 7
+
+    def test_negative_exponent(self):
+        assert power(2, -1) == 0.5
+
+    def test_base_zero(self):
+        assert power(0, 5) == 0
+
+    def test_float_base(self):
+        assert power(2.5, 2) == 6.25
+
+    def test_zero_power_zero(self):
+        with pytest.raises(ValueError, match="0\\*\\*0 is undefined"):
+            power(0, 0)
