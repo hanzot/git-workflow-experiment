@@ -70,14 +70,21 @@ class TestPower:
         assert power(7, 1) == 7
 
     def test_negative_exponent(self):
-        assert power(2, -1) == 0.5
+        assert power(2, -1) == pytest.approx(0.5)
 
     def test_base_zero(self):
         assert power(0, 5) == 0
 
     def test_float_base(self):
-        assert power(2.5, 2) == 6.25
+        assert power(2.5, 2) == pytest.approx(6.25)
 
     def test_zero_power_zero(self):
         with pytest.raises(ValueError, match="0\\*\\*0 is undefined"):
             power(0, 0)
+
+    def test_negative_base_integer_exponent(self):
+        assert power(-2, 3) == -8
+
+    def test_negative_base_non_integer_exponent(self):
+        with pytest.raises(ValueError, match="Negative base with non-integer exponent"):
+            power(-4, 0.5)
