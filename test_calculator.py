@@ -2,7 +2,7 @@
 
 import pytest
 
-from calculator import add, subtract, multiply, divide, power
+from calculator import add, subtract, multiply, divide, power, sqrt
 
 
 class TestAdd:
@@ -88,3 +88,21 @@ class TestPower:
     def test_negative_base_non_integer_exponent(self):
         with pytest.raises(ValueError, match="Negative base with non-integer exponent"):
             power(-4, 0.5)
+
+
+class TestSqrt:
+    def test_perfect_square(self):
+        assert sqrt(4) == 2.0
+
+    def test_non_perfect_square(self):
+        assert sqrt(2) == pytest.approx(1.4142135623730951)
+
+    def test_zero(self):
+        assert sqrt(0) == 0.0
+
+    def test_negative_number(self):
+        with pytest.raises(ValueError, match="Cannot calculate square root of negative number"):
+            sqrt(-1)
+
+    def test_large_number(self):
+        assert sqrt(100) == 10.0

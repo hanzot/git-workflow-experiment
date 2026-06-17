@@ -42,3 +42,14 @@ def power(a: float, b: float) -> float:
     if a < 0 and b != int(b):
         raise ValueError("Negative base with non-integer exponent is not supported")
     return a ** b
+
+
+def sqrt(a: float) -> float:
+    """Return the square root of a.
+
+    Raises:
+        ValueError: If a is negative (would produce complex result).
+    """
+    if a < 0:
+        raise ValueError("Cannot calculate square root of negative number")
+    return a ** 0.5
